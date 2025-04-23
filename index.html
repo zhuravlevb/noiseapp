@@ -1,9 +1,17 @@
 <!doctype html>
 <html>
   <head>
+	<meta name='viewport' content='viewport-fit=cover, width=device-width, initial-scale=1.0, user-scalable=0'>
     <script src="https://telegram.org/js/telegram-web-app.js?57"></script>
   </head>
   <body>
     <button onclick="Telegram.WebApp.HapticFeedback.impactOccurred('soft')">change</button>
   </body>
+  <script>
+    Telegram.WebApp.BottomButton.setParams({text: 'таймер сна', color: '#8C522F', text_color: '#A48C7F'});
+    Telegram.WebApp.BottomButton.show();
+
+    Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: '#A48C7F', text_color: '#8C522F', position: 'bottom'});
+    Telegram.WebApp.SecondaryButton.show();
+  </script>
 </html>
