@@ -19,7 +19,7 @@
 		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: '#A48C7F', text_color: '#8C522F', position: 'bottom', is_active: true});
 		// Telegram.WebApp.SecondaryButton.show();
 
-		Telegram.WebApp.MainButton.onclick( function () {
+		Telegram.WebApp.MainButton.onClick( function () {
 			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
 			if (currentMode == null | currentMode == 7) {
 				currentMode = 0;
@@ -32,7 +32,7 @@
 			// start timer
 		});
 
-		Telegram.WebApp.SecondaryButton.onclick( function () {
+		Telegram.WebApp.SecondaryButton.onClick( function () {
 			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
 			currentMode = null;
 			Telegram.WebApp.MainButton.setText('таймер сна');
