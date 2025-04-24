@@ -203,7 +203,7 @@
 		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось 1 ч', color: noises[currentNoise][2], text_color: noises[currentNoise][1], position: 'bottom', is_active: true});
 		// Telegram.WebApp.SecondaryButton.show();
 
-		Telegram.WebApp.MainButton.onClick( function () {
+		function mainButtonClick() {
 			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
 			if (currentMode == null | currentMode == modes.length-1) {
 				currentMode = 0;
@@ -235,7 +235,9 @@
 					clearInterval(sleepInterval);
 				}
 			}, 60000);
-		});
+		}
+
+		Telegram.WebApp.MainButton.onClick(mainButtonClick());
 
 		Telegram.WebApp.SecondaryButton.onClick( function () {
 			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
