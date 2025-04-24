@@ -35,10 +35,7 @@
 			padding: 0;
 			margin: 0;
 
-			transition:             background-color 200ms ease;
-			-moz-transition:    background-color 200ms ease;
-			-ms-transition:     background-color 200ms ease;
-			-o-transition:      background-color 200ms ease;
+			transition:         background-color 200ms ease;
 			-webkit-transition: background-color 200ms ease;
 		}
 
@@ -86,11 +83,10 @@
 			left: 40vw;
 			color: #000;
 
-			transition:             color, transform 200ms ease;
-			-moz-transition:    color, transform 200ms ease;
-			-ms-transition:     color, transform 200ms ease;
-			-o-transition:      color, transform 200ms ease;
-			-webkit-transition: color, transform 200ms ease;
+			transition:         color 200ms ease;
+			-webkit-transition: color 200ms ease;
+			transition:         transform 100ms ease;
+			-webkit-transition: transform 100ms ease;
 		}
 	</style>
 	<script>
@@ -146,7 +142,7 @@
 			document.getElementById('icon').style.transform = 'scale(0.8)';
 			setTimeout(function () {
 				document.getElementById('icon').style.transform = 'scale(1)';
-			}, 200)
+			}, 100)
 		});
 
 
