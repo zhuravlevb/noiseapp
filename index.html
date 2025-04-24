@@ -1,19 +1,43 @@
 <!doctype html>
 <html>
-  <head>
-	<meta name='viewport' content='viewport-fit=cover, width=device-width, initial-scale=1.0, user-scalable=0'>
-    <script src="https://telegram.org/js/telegram-web-app.js?57"></script>
-  </head>
-  <body>
-    <button onclick="Telegram.WebApp.HapticFeedback.impactOccurred('soft')">change</button>
-  </body>
-  <script>
-	  Telegram.WebApp.setBottomBarColor('#A48C7F');
-    
-    Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: '#8C522F', text_color: '#A48C7F', is_active: true});
-    Telegram.WebApp.MainButton.show();
+	<head>
+		<meta name='viewport' content='viewport-fit=cover, width=device-width, initial-scale=1.0, user-scalable=0'>
+		<script src="https://telegram.org/js/telegram-web-app.js?57"></script>
+	</head>
+	<body>
+		<button onclick="Telegram.WebApp.HapticFeedback.impactOccurred('soft')">change</button>
+	</body>
+	<script>
+		let modes = ['15 мин', '30 мин', '1 ч', '2 ч', '4 ч', '8 ч', '10 ч', '12 ч']
+		let currentMode;
 
-    Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: '#A48C7F', text_color: '#8C522F', position: 'bottom', is_active: true});
-    Telegram.WebApp.SecondaryButton.show();
-  </script>
+		Telegram.WebApp.setBottomBarColor('#A48C7F');
+		
+		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: '#8C522F', text_color: '#A48C7F', is_active: true});
+		Telegram.WebApp.MainButton.show();
+
+		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: '#A48C7F', text_color: '#8C522F', position: 'bottom', is_active: true});
+		// Telegram.WebApp.SecondaryButton.show();
+
+		Telegram.WebApp.MainButton.onclick( function () {
+			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
+			if (currentMode == null | currentMode == 7) {
+				currentMode = 0;
+			} else {
+				currentMode++;
+			}
+			Telegram.WebApp.MainButton.setText('таймер сна: ' + modes[currentMode]);
+			Telegram.WebApp.SecondaryButton.show();
+			Telegram.WebApp.SecondaryButton.setText('осталось: ' + modes[currentMode]);
+			// start timer
+		});
+
+		Telegram.WebApp.SecondaryButton.onclick( function () {
+			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
+			currentMode = null;
+			Telegram.WebApp.MainButton.setText('таймер сна');
+			Telegram.WebApp.SecondaryButton.hide();
+			// stop timer
+		});
+	</script>
 </html>
