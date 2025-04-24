@@ -212,7 +212,7 @@
 				Telegram.WebApp.SecondaryButton.setText('осталось ' + remainingMinutes + ' мин');
 			}
 
-			if (Date.now() < remaining) {
+			if (Date.now() > remaining) {
 				document.getElementById('icon').innerHTML = 'play_circle';
 				audio.pause();
 				clearInterval(playInterval);
