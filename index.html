@@ -48,6 +48,7 @@
 			overscroll-behavior-x: contain;
 			scroll-snap-type: x mandatory;
 			scrollbar-width: none;
+			margin-top: 10vw;
 		}
 
 		div.container::-webkit-scrollbar {
@@ -102,6 +103,7 @@
 		let audio = new Audio();
 
 		document.getElementById('caption').innerHTML = noises[currentNoise][0];
+		document.getElementById('caption').style.color = noises[currentNoise][1];
 		document.getElementById('icon').style.color = noises[currentNoise][2];
 		audio.src = noises[currentNoise][3];
 		for (let i = 0; i < noises.length; i++) {
