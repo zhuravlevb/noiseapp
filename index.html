@@ -238,7 +238,7 @@
 		}
 
 		// Telegram.WebApp.MainButton.onClick(mainButtonClick());
-		Telegram.WebApp.MainButton.addEventListener('main_button_pressed', mainButtonClick);
+		Telegram.WebApp.onEvent('mainButtonClicked', mainButtonClick);
 
 		Telegram.WebApp.SecondaryButton.onClick( function () {
 			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
