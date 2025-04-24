@@ -59,7 +59,7 @@
 			font-size: 12pt;
 			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 			font-weight: bold;
-			color: #333
+			color: #141414;
 		}
 	</style>
 	<script>
@@ -109,10 +109,10 @@
 
 		Telegram.WebApp.setBottomBarColor('#A48C7F');
 		
-		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: noises[currentNoise][1], text_color: '#333333', is_active: true});
+		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: noises[currentNoise][1], text_color: '##ffffff', is_active: true});
 		Telegram.WebApp.MainButton.show();
 
-		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: noises[currentNoise][2], text_color: '#333333', position: 'bottom', is_active: true});
+		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: noises[currentNoise][2], text_color: '#141414', position: 'bottom', is_active: true});
 		// Telegram.WebApp.SecondaryButton.show();
 
 		Telegram.WebApp.MainButton.onClick( function () {
