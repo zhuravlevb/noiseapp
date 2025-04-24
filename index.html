@@ -234,7 +234,8 @@
 			remaining.setTime(dn + modes[currentMode][1]*60000);
 
 			clearInterval(sleepInterval);
-			sleepInterval = setInterval(si, 1000);
+			si();
+			sleepInterval = setInterval(si, 60000);
 		}
 
 		// Telegram.WebApp.MainButton.onClick(mainButtonClick());
