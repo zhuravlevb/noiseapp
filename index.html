@@ -10,6 +10,8 @@
 			<div class="circle"></div>
 			<div class="circle"></div>
 			<div class="circle"></div>
+			<div class="circle"></div>
+			<div class="circle"></div>
 		</div>
 		<p id="caption"></p>
 	</body>
@@ -68,7 +70,7 @@
 		var timer = null;
 		let modes = ['15 мин', '30 мин', '1 ч', '2 ч', '4 ч', '8 ч', '10 ч', '12 ч']
 		let currentMode;
-		let noises = [['brown noise', '#8C522F', '#A48C7F'], ['pink noise', '#FF88B1', '#AD8791'], ['red noise', '#FE2741', '#C77C7B'], ['violet noise', '#CF83FF', '#9F89A8']]
+		let noises = [['brown noise', '#795548', '#BCAAA4'], ['deep brown noise', '#3E2723', '#A1887F'], ['pink noise', '#F8BBD0', '#EC407A'], ['red noise', '#F44336', '#FFCDD2'], ['deep red noise', '#B71C1C', '#EF9A9A'], ['violet noise', '#E1BEE7', '#AB47BC']]
 		let currentNoise = 0;
 
 		document.getElementById('caption').innerHTML = noises[currentNoise][0]
@@ -98,8 +100,8 @@
 
 			if (cont.scrollLeft % window.innerWidth != 0) {
 				percent = (cont.scrollLeft % window.innerWidth) / (window.innerWidth / 100) / 100;
-				small = 0.4 + 0.6 * (1 - percent);
-				big = 0.4 + 0.6 * percent;
+				small = 0.2 + 0.8 * (1 - percent);
+				big = 0.2 + 0.8 * percent;
 				current = Math.floor(cont.scrollLeft / window.innerWidth);
 				cont.children[current].style.transform = 'scale(' + small + ')';
 				if (current != noises.length-1) {
@@ -111,12 +113,12 @@
 		});
 
 
-		Telegram.WebApp.setBottomBarColor('#A48C7F');
+		Telegram.WebApp.setBottomBarColor(noises[currentNoise][2]);
 		
 		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: noises[currentNoise][1], text_color: '#ffffff', is_active: true});
 		Telegram.WebApp.MainButton.show();
 
-		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: noises[currentNoise][2], text_color: '#141414', position: 'bottom', is_active: true});
+		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось 1 ч', color: noises[currentNoise][2], text_color: '#141414', position: 'bottom', is_active: true});
 		// Telegram.WebApp.SecondaryButton.show();
 
 		Telegram.WebApp.MainButton.onClick( function () {
