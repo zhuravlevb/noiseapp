@@ -10,7 +10,7 @@
 			<div class="circle"></div>
 			<div class="circle"></div>
 		</div>
-		<p id="caption">brown noise</p>
+		<p id="caption"></p>
 	</body>
 
 	<style>
@@ -59,8 +59,10 @@
 		var timer = null;
 		let modes = ['15 мин', '30 мин', '1 ч', '2 ч', '4 ч', '8 ч', '10 ч', '12 ч']
 		let currentMode;
-		let noises = ['brown noise', 'deep brown noise', 'pink noise', 'red noise']
+		let noises = [['brown noise', '#8C522F', '#A48C7F'], ['pink noise', '#FF88B1', '#AD8791'], ['red noise', '#FE2741', '#C77C7B'], ['violet noise', '#CF83FF', '#9F89A8']]
 		let currentNoise = 0;
+
+		document.getElementById('caption').innerHTML = noises[currentNoise][0]
 
 		cont.addEventListener('scroll', function () {
 			if (timer !== null) {
@@ -71,7 +73,7 @@
 					if (cont.scrollLeft / window.innerWidth != currentNoise) {
 						currentNoise = cont.scrollLeft / window.innerWidth;
 						Telegram.WebApp.HapticFeedback.impactOccurred('soft');
-						document.getElementById('caption').innerHTML = noises[currentNoise];
+						document.getElementById('caption').innerHTML = noises[currentNoise][0];
 					}
 				}
 			}, 100);
@@ -93,10 +95,10 @@
 
 		Telegram.WebApp.setBottomBarColor('#A48C7F');
 		
-		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: '#8C522F', text_color: '#A48C7F', is_active: true});
+		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: noises[currentNoise][1], text_color: noises[currentNoise][2], is_active: true});
 		Telegram.WebApp.MainButton.show();
 
-		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: '#A48C7F', text_color: '#8C522F', position: 'bottom', is_active: true});
+		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: noises[currentNoise][2], text_color: noises[currentNoise][1], position: 'bottom', is_active: true});
 		// Telegram.WebApp.SecondaryButton.show();
 
 		Telegram.WebApp.MainButton.onClick( function () {
