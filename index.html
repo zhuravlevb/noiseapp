@@ -96,11 +96,14 @@
 	<script>
 		var cont = document.getElementById('container');
 		var timer = null;
-		let modes = ['15 мин', '30 мин', '1 ч', '2 ч', '4 ч', '8 ч', '10 ч', '12 ч']
+		let modes = [['15 мин', 15], ['30 мин', 30], ['1 ч', 60], ['2 ч', 120], ['4 ч', 240], ['8 ч', 480], ['10 ч', 600], ['12 ч', 720]]
 		let currentMode;
-		let noises = [['brown noise', '#795548', '#BCAAA4', 'brown.mp3'], ['deep brown noise', '#3E2723', '#A1887F', 'deepbrown.mp3'], ['pink noise', '#EC407A', '#F8BBD0', ''], ['red noise', '#F44336', '#FFCDD2', ''], ['deep red noise', '#B71C1C', '#EF9A9A', ''], ['violet noise', '#AB47BC', '#E1BEE7', '']];
+		let noises = [['brown noise', '#795548', '#BCAAA4', 'brown.mp3'], ['deep brown noise', '#3E2723', '#A1887F', 'deepbrown.mp3'], ['pink noise', '#EC407A', '#F8BBD0', ''], ['red noise', '#E53935', '#FFCDD2', ''], ['deep red noise', '#B71C1C', '#EF9A9A', ''], ['violet noise', '#AB47BC', '#E1BEE7', '']];
 		let currentNoise = 0;
 		let audio = new Audio();
+		let sleepInterval;
+		let remaining;
+		let playInterval;
 
 		document.getElementById('caption').innerHTML = noises[currentNoise][0];
 		document.getElementById('caption').style.color = noises[currentNoise][1];
@@ -156,6 +159,11 @@
 			if (audio.paused) {
 				document.getElementById('icon').innerHTML = 'pause_circle';
 				audio.play();
+				playInterval = setInterval(function () {
+					if (audio.currentTime > 60) {
+						audio.currentTime = 0;
+					}
+				}, 1000);
 				try {
 					navigator.mediaSession.metadata = new MediaMetadata({
 						title: noises[currentNoise][0],
@@ -177,12 +185,13 @@
 			} else {
 				document.getElementById('icon').innerHTML = 'play_circle';
 				audio.pause();
+				clearInterval(playInterval);
 			}
 
 			document.getElementById('icon').style.transform = 'scale(0.8)';
 			setTimeout(function () {
 				document.getElementById('icon').style.transform = 'scale(1)';
-			}, 150)
+			}, 150);
 		});
 
 
@@ -201,10 +210,25 @@
 			} else {
 				currentMode++;
 			}
-			Telegram.WebApp.MainButton.setText('таймер сна: ' + modes[currentMode]);
+			Telegram.WebApp.MainButton.setText('таймер сна: ' + modes[currentMode][0]);
 			Telegram.WebApp.SecondaryButton.show();
-			Telegram.WebApp.SecondaryButton.setText('осталось ' + modes[currentMode]);
-			// start timer
+			remaining = new Date(Date.now().getTime() + modes[currentMode][1]*60000);
+			sleepInterval = setInterval(function () {
+				let remainingMinutes = remaining - Date.now();
+				remainingMinutes = Math.floor(remainingSeconds / 60000);
+				if (remainingMinutes > 59) {
+					Telegram.WebApp.SecondaryButton.setText('осталось ' + Math.floor(remainingMinutes / 60) + ' ч ' + remainingMinutes % 60 + ' мин');
+				} else {
+					Telegram.WebApp.SecondaryButton.setText('осталось ' + remainingMinutes + ' мин');
+				}
+
+				if (Date.now() > remaining) {
+					document.getElementById('icon').innerHTML = 'play_circle';
+					audio.pause();
+					clearInterval(playInterval);
+					clearInterval(sleepInterval);
+				}
+			}, 60000);
 		});
 
 		Telegram.WebApp.SecondaryButton.onClick( function () {
@@ -212,6 +236,7 @@
 			currentMode = null;
 			Telegram.WebApp.MainButton.setText('таймер сна');
 			Telegram.WebApp.SecondaryButton.hide();
+			clearInterval(sleepInterval);
 			// stop timer
 		});
 	</script>
