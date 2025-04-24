@@ -161,6 +161,12 @@
 						// 	{ src: md[currentMusic].covers[2], sizes: '160x160', type: 'image/png' },
 						// ]
 					});
+					navigator.mediaSession.setActionHandler('play', function() {});
+					navigator.mediaSession.setActionHandler('pause', function() {});
+					navigator.mediaSession.setActionHandler('previoustrack', function() {});
+					navigator.mediaSession.setActionHandler('nexttrack', function() {});
+					navigator.mediaSession.setActionHandler("seekto", function () {});
+}
 				} catch (error) {
 					console.log('mediasession not supported');
 				}
