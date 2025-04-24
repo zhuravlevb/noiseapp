@@ -36,17 +36,36 @@
 		div.circle {
 			width: 80vw;
 			height: 80vw;
-			padding: 10vw;
+			margin: 10vw;
 			background-color: brown;
 			border-radius: 80vw;
-			scroll-snap-align: start;
+			scroll-snap-align: center;
 			overflow-y: hidden;
 			display: table; 
 		}
 	</style>
 	<script>
+		var cont = document.getElementById('container');
+		var timer = null;
 		let modes = ['15 мин', '30 мин', '1 ч', '2 ч', '4 ч', '8 ч', '10 ч', '12 ч']
 		let currentMode;
+		let noises = ['brown noise', 'deep brown noise', 'pink noise', 'red noise']
+		let currentNoise = 0;
+
+		cont.addEventListener('scroll', function () {
+			if (timer !== null) {
+				clearTimeout(timer);
+			}
+			timer = setTimeout(function() {
+				if (cont.scrollLeft % window.innerWidth === 0) {
+					if (cont.scrollLeft / window.innerWidth != currentNoise) {
+						currentNoise = cont.scrollLeft / window.innerWidth;
+						Telegram.WebApp.HapticFeedback.impactOccurred('soft');
+					}
+				}
+			}, 100);
+		});
+
 
 		Telegram.WebApp.setBottomBarColor('#A48C7F');
 		
