@@ -85,8 +85,8 @@
 
 			transition:         color 200ms ease;
 			-webkit-transition: color 200ms ease;
-			transition:         transform 100ms ease;
-			-webkit-transition: transform 100ms ease;
+			transition:         transform 150ms ease;
+			-webkit-transition: transform 150ms ease;
 		}
 	</style>
 	<script>
@@ -96,6 +96,7 @@
 		let currentMode;
 		let noises = [['brown noise', '#795548', '#BCAAA4'], ['deep brown noise', '#3E2723', '#A1887F'], ['pink noise', '#EC407A', '#F8BBD0'], ['red noise', '#F44336', '#FFCDD2'], ['deep red noise', '#B71C1C', '#EF9A9A'], ['violet noise', '#AB47BC', '#E1BEE7']]
 		let currentNoise = 0;
+		let audio = new Audio();
 
 		document.getElementById('caption').innerHTML = noises[currentNoise][0];
 		document.getElementById('icon').style.color = noises[currentNoise][2];
@@ -139,10 +140,18 @@
 		});
 
 		document.getElementById('icon').addEventListener('click', function () {
+			if (audio.paused) {
+				document.getElementById('icon').innerHTML = 'pause_circle';
+				audio.play();
+			} else {
+				document.getElementById('icon').innerHTML = 'play_circle';
+				audio.pause();
+			}
+
 			document.getElementById('icon').style.transform = 'scale(0.8)';
 			setTimeout(function () {
 				document.getElementById('icon').style.transform = 'scale(1)';
-			}, 100)
+			}, 150)
 		});
 
 
