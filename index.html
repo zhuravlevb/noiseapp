@@ -71,7 +71,9 @@
 			small = 0.6 + 0.4 * percent;
 			big = 0.6 + 0.4 * (1 - percent);
 			cont.children[currentNoise].style.transform = 'scale(' + small + ')';
-			cont.children[currentNoise+1].style.transform = 'scale(' + big + ')';
+			if (currentNoise != noises.length-1) {
+				cont.children[currentNoise+1].style.transform = 'scale(' + big + ')';
+			}
 		});
 
 
@@ -85,7 +87,7 @@
 
 		Telegram.WebApp.MainButton.onClick( function () {
 			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
-			if (currentMode == null | currentMode == 7) {
+			if (currentMode == null | currentMode == modes.length-1) {
 				currentMode = 0;
 			} else {
 				currentMode++;
