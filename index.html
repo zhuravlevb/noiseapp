@@ -205,7 +205,7 @@
 
 		function si() {
 			let remainingMinutes = remaining - Date.now();
-			remainingMinutes = Math.floor(remainingMinutes / 60000);
+			remainingMinutes = Math.ceil(remainingMinutes / 60000);
 			if (remainingMinutes > 59) {
 				Telegram.WebApp.SecondaryButton.setText('осталось ' + Math.floor(remainingMinutes / 60) + ' ч ' + remainingMinutes % 60 + ' мин');
 			} else {
@@ -236,7 +236,7 @@
 
 			clearInterval(sleepInterval);
 			si();
-			sleepInterval = setInterval(si, 10000);
+			sleepInterval = setInterval(si, 1000);
 		}
 
 		// Telegram.WebApp.MainButton.onClick(mainButtonClick());
