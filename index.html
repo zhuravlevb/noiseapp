@@ -67,7 +67,7 @@
 				}
 			}, 100);
 
-			percent = (cont.scrollLeft % window.innerWidth) / (window.innerWidth / 100);
+			percent = (cont.scrollLeft % window.innerWidth) / (window.innerWidth / 100) / 100;
 			small = 0.6 + 0.4 * percent;
 			big = 0.6 + 0.4 * (1 - percent);
 			cont.children[currentNoise].style.transform = 'scale(' + small + ')';
