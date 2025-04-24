@@ -71,6 +71,9 @@
 		let currentNoise = 0;
 
 		document.getElementById('caption').innerHTML = noises[currentNoise][0]
+		for (let i = 0; i < noises.length-1; i++) {
+                cont.children[i].style.backgroundColor = noises[i][1];
+            }
 
 		cont.addEventListener('scroll', function () {
 			if (timer !== null) {
@@ -109,7 +112,7 @@
 
 		Telegram.WebApp.setBottomBarColor('#A48C7F');
 		
-		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: noises[currentNoise][1], text_color: '##ffffff', is_active: true});
+		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: noises[currentNoise][1], text_color: '#ffffff', is_active: true});
 		Telegram.WebApp.MainButton.show();
 
 		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: noises[currentNoise][2], text_color: '#141414', position: 'bottom', is_active: true});
