@@ -213,7 +213,8 @@
 			Telegram.WebApp.MainButton.setText('таймер сна: ' + modes[currentMode][0]);
 			Telegram.WebApp.SecondaryButton.show();
 			let dn = Date.now();
-			remaining = new Date(dn + modes[currentMode][1]*60000);
+			remaining = new Date();
+			remaining.setTime(dn + modes[currentMode][1]*60000);
 
 			console.log(remaining);
 			console.log(Date.now());
