@@ -96,7 +96,7 @@
 	<script>
 		var cont = document.getElementById('container');
 		var timer = null;
-		let modes = [['15 мин', 15], ['30 мин', 30], ['1 ч', 60], ['2 ч', 120], ['4 ч', 240], ['8 ч', 480], ['10 ч', 600], ['12 ч', 720]]
+		let modes = [['2 мин', 2], ['15 мин', 15], ['30 мин', 30], ['1 ч', 60], ['2 ч', 120], ['4 ч', 240], ['8 ч', 480], ['10 ч', 600], ['12 ч', 720]]
 		let currentMode;
 		let noises = [['brown noise', '#795548', '#BCAAA4', 'brown.mp3'], ['deep brown noise', '#3E2723', '#A1887F', 'deepbrown.mp3'], ['pink noise', '#EC407A', '#F8BBD0', ''], ['red noise', '#E53935', '#FFCDD2', ''], ['deep red noise', '#B71C1C', '#EF9A9A', ''], ['violet noise', '#AB47BC', '#E1BEE7', '']];
 		let currentNoise = 0;
@@ -217,6 +217,7 @@
 				audio.pause();
 				clearInterval(playInterval);
 				clearInterval(sleepInterval);
+				console.log(1);
 			}
 		}
 
