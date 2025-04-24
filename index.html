@@ -203,6 +203,23 @@
 		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось 1 ч', color: noises[currentNoise][2], text_color: noises[currentNoise][1], position: 'bottom', is_active: true});
 		// Telegram.WebApp.SecondaryButton.show();
 
+		function si() {
+			let remainingMinutes = remaining - Date.now();
+			remainingMinutes = Math.floor(remainingMinutes / 60000);
+			if (remainingMinutes > 59) {
+				Telegram.WebApp.SecondaryButton.setText('осталось ' + Math.floor(remainingMinutes / 60) + ' ч ' + remainingMinutes % 60 + ' мин');
+			} else {
+				Telegram.WebApp.SecondaryButton.setText('осталось ' + remainingMinutes + ' мин');
+			}
+
+			if (Date.now() < remaining) {
+				document.getElementById('icon').innerHTML = 'play_circle';
+				audio.pause();
+				clearInterval(playInterval);
+				clearInterval(sleepInterval);
+			}
+		}
+
 		function mainButtonClick() {
 			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
 			if (currentMode == null | currentMode == modes.length-1) {
@@ -217,22 +234,8 @@
 			remaining.setTime(dn + modes[currentMode][1]*60000);
 
 			clearInterval(sleepInterval);
-			sleepInterval = setInterval(function () {
-				let remainingMinutes = remaining - Date.now();
-				remainingMinutes = Math.floor(remainingMinutes / 60000);
-				if (remainingMinutes > 59) {
-					Telegram.WebApp.SecondaryButton.setText('осталось ' + Math.floor(remainingMinutes / 60) + ' ч ' + remainingMinutes % 60 + ' мин');
-				} else {
-					Telegram.WebApp.SecondaryButton.setText('осталось ' + remainingMinutes + ' мин');
-				}
-
-				if (Date.now() < remaining) {
-					document.getElementById('icon').innerHTML = 'play_circle';
-					audio.pause();
-					clearInterval(playInterval);
-					clearInterval(sleepInterval);
-				}
-			}, 60000);
+			si();
+			sleepInterval = setInterval(si, 60000);
 		}
 
 		Telegram.WebApp.MainButton.onClick(mainButtonClick());
