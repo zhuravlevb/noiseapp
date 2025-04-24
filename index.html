@@ -58,12 +58,8 @@
 			text-align: center;
 			font-size: 12pt;
 			font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-			transition:             color 200ms ease;
-			-moz-transition:    color 200ms ease;
-			-ms-transition:     color 200ms ease;
-			-o-transition:      color 200ms ease;
-			-webkit-transition: color 200ms ease;
+			font-weight: bold;
+			color: #333
 		}
 	</style>
 	<script>
@@ -86,10 +82,9 @@
 						currentNoise = cont.scrollLeft / window.innerWidth;
 						Telegram.WebApp.HapticFeedback.impactOccurred('soft');
 						document.getElementById('caption').innerHTML = noises[currentNoise][0];
-						Telegram.WebApp.MainButton.setParams({color: noises[currentNoise][1], text_color: noises[currentNoise][2]});
-						Telegram.WebApp.SecondaryButton.setParams({color: noises[currentNoise][2], text_color: noises[currentNoise][1]});
+						Telegram.WebApp.MainButton.setParams({color: noises[currentNoise][1]});
+						Telegram.WebApp.SecondaryButton.setParams({color: noises[currentNoise][2]});
 						document.body.style.backgroundColor = noises[currentNoise][2];
-						document.getElementById('caption').color = noises[currentNoise][1];
 						Telegram.WebApp.setHeaderColor(noises[currentNoise][2]);
 						Telegram.WebApp.setBackgroundColor(noises[currentNoise][2]);
 						Telegram.WebApp.setBottomBarColor(noises[currentNoise][2]);
@@ -114,10 +109,10 @@
 
 		Telegram.WebApp.setBottomBarColor('#A48C7F');
 		
-		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: noises[currentNoise][1], text_color: noises[currentNoise][2], is_active: true});
+		Telegram.WebApp.MainButton.setParams({text: 'таймер сна', color: noises[currentNoise][1], text_color: '#333333', is_active: true});
 		Telegram.WebApp.MainButton.show();
 
-		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: noises[currentNoise][2], text_color: noises[currentNoise][1], position: 'bottom', is_active: true});
+		Telegram.WebApp.SecondaryButton.setParams({text: 'осталось: 1 ч', color: noises[currentNoise][2], text_color: '#333333', position: 'bottom', is_active: true});
 		// Telegram.WebApp.SecondaryButton.show();
 
 		Telegram.WebApp.MainButton.onClick( function () {
