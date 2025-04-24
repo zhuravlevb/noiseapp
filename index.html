@@ -10,6 +10,7 @@
 			<div class="circle"></div>
 			<div class="circle"></div>
 		</div>
+		<p id="caption"></p>
 	</body>
 
 	<style>
@@ -45,6 +46,12 @@
 			overflow-y: hidden;
 			display: table; 
 		}
+
+		p#caption {
+			width: 100vw;
+			text-align: center;
+			font-size: 12pt;
+		}
 	</style>
 	<script>
 		var cont = document.getElementById('container');
@@ -63,6 +70,7 @@
 					if (cont.scrollLeft / window.innerWidth != currentNoise) {
 						currentNoise = cont.scrollLeft / window.innerWidth;
 						Telegram.WebApp.HapticFeedback.impactOccurred('soft');
+						document.getElementById('caption').innerHTML = noises[currentNoise];
 					}
 				}
 			}, 100);
