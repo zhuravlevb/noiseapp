@@ -234,11 +234,11 @@
 			remaining.setTime(dn + modes[currentMode][1]*60000);
 
 			clearInterval(sleepInterval);
-			si();
-			sleepInterval = setInterval(si, 60000);
+			sleepInterval = setInterval(si, 1000);
 		}
 
-		Telegram.WebApp.MainButton.onClick(mainButtonClick());
+		// Telegram.WebApp.MainButton.onClick(mainButtonClick());
+		Telegram.WebApp.MainButton.addEventListener('main_button_pressed', mainButtonClick);
 
 		Telegram.WebApp.SecondaryButton.onClick( function () {
 			Telegram.WebApp.HapticFeedback.impactOccurred('soft');
