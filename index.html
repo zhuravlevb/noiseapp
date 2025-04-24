@@ -74,6 +74,13 @@
 						currentNoise = cont.scrollLeft / window.innerWidth;
 						Telegram.WebApp.HapticFeedback.impactOccurred('soft');
 						document.getElementById('caption').innerHTML = noises[currentNoise][0];
+						Telegram.WebApp.MainButton.setParams({color: noises[currentNoise][1], text_color: noises[currentNoise][2]});
+						Telegram.WebApp.SecondaryButton.setParams({color: noises[currentNoise][2], text_color: noises[currentNoise][1]});
+						document.body.style.backgroundColor = noises[currentNoise][2];
+						document.getElementById('caption').color = noises[currentNoise][1];
+						Telegram.WebApp.setHeaderColor(noises[currentNoise][2]);
+						Telegram.WebApp.setBackgroundColor(noises[currentNoise][2]);
+						Telegram.WebApp.setBottomBarColor(noises[currentNoise][2]);
 					}
 				}
 			}, 100);
