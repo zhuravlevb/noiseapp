@@ -129,7 +129,9 @@
 						Telegram.WebApp.setBackgroundColor(noises[currentNoise][2]);
 						Telegram.WebApp.setBottomBarColor(noises[currentNoise][2]);
 						audio.src = noises[currentNoise][3];
-						audio.play();
+						if (!audio.paused){
+							audio.play();
+						}
 					}
 				}
 			}, 100);
