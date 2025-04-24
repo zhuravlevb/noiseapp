@@ -138,8 +138,8 @@
 
 			if (cont.scrollLeft % window.innerWidth != 0) {
 				percent = (cont.scrollLeft % window.innerWidth) / (window.innerWidth / 100) / 100;
-				small = 0.2 + 0.8 * (1 - percent);
-				big = 0.2 + 0.8 * percent;
+				small = 0.1 + 0.9 * (1 - percent);
+				big = 0.1 + 0.9 * percent;
 				current = Math.floor(cont.scrollLeft / window.innerWidth);
 				cont.children[current].style.transform = 'scale(' + small + ')';
 				if (current != noises.length-1) {
