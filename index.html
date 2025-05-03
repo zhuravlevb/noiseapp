@@ -179,6 +179,9 @@
 					navigator.mediaSession.setActionHandler('previoustrack', function() {});
 					navigator.mediaSession.setActionHandler('nexttrack', function() {});
 					navigator.mediaSession.setActionHandler("seekto", function () {});
+					navigator.mediaSession.setPositionState({
+						duration: Infinity
+					});
 				} catch (error) {
 					console.log('mediasession not supported');
 				}
